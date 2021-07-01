@@ -462,6 +462,7 @@ class EditableText extends StatefulWidget {
     this.textInputAction,
     this.textCapitalization = TextCapitalization.none,
     this.onChanged,
+    this.onContentCommited,
     this.onEditingComplete,
     this.onSubmitted,
     this.onAppPrivateCommand,
@@ -1028,6 +1029,9 @@ class EditableText extends StatefulWidget {
   ///  * [onEditingComplete], [onSubmitted], [onSelectionChanged]:
   ///    which are more specialized input change notifications.
   final ValueChanged<String>? onChanged;
+
+  /// Once new content such as GIF is commited...
+  final ValueChanged<Map<String, Object>>? onContentCommited;
 
   /// {@template flutter.widgets.editableText.onEditingComplete}
   /// Called when the user submits editable content (e.g., user presses the "done"
@@ -1814,6 +1818,12 @@ class EditableTextState extends State<EditableText> with AutomaticKeepAliveClien
   @override
   void performPrivateCommand(String action, Map<String, dynamic> data) {
     widget.onAppPrivateCommand!(action, data);
+  }
+
+  @override
+  void commitContent(Map<String, Object> content) {
+    widget.onContentCommited!(content);
+    _finalizeEditing(TextInputAction.none, shouldUnfocus: false);
   }
 
   // The original position of the caret on FloatingCursorDragState.start.
