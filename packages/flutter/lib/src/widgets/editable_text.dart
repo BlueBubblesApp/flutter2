@@ -1031,7 +1031,7 @@ class EditableText extends StatefulWidget {
   final ValueChanged<String>? onChanged;
 
   /// Once new content such as GIF is commited...
-  final ValueChanged<Map<String, Object>>? onContentCommited;
+  final ValueChanged<Map<String, dynamic>>? onContentCommited;
 
   /// {@template flutter.widgets.editableText.onEditingComplete}
   /// Called when the user submits editable content (e.g., user presses the "done"
@@ -1821,7 +1821,7 @@ class EditableTextState extends State<EditableText> with AutomaticKeepAliveClien
   }
 
   @override
-  void commitContent(Map<String, Object> content) {
+  void commitContent(Map<String, dynamic> content) {
     widget.onContentCommited!(content);
     _finalizeEditing(TextInputAction.none, shouldUnfocus: false);
   }

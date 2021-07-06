@@ -884,7 +884,7 @@ abstract class TextInputClient {
   void performAction(TextInputAction action);
 
   /// Notify client about new content insertion, like gif or PNG...
-  void commitContent(Map<String, Object> content);
+  void commitContent(Map<String, dynamic> content);
 
   /// Request from the input method that this client perform the given private
   /// command.
@@ -1373,7 +1373,7 @@ class TextInput {
         break;
       case 'TextInputClient.performAction':
         if (args[1] as String == 'TextInputAction.commitContent') {
-          _currentConnection!._client.commitContent(args[2] as Map<String, Object>);
+          _currentConnection!._client.commitContent(args[2] as Map<String, dynamic>);
         } else {
           _currentConnection!._client.performAction(_toTextInputAction(args[1] as String));
         }

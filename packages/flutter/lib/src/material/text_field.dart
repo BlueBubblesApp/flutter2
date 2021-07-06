@@ -643,7 +643,7 @@ class TextField extends StatefulWidget {
   final ValueChanged<String>? onChanged;
 
   /// Once new content is commited...
-  final ValueChanged<Map<String, Object>>? onContentCommited;
+  final ValueChanged<Map<String, dynamic>>? onContentCommited;
 
 
   /// {@macro flutter.widgets.editableText.onEditingComplete}
